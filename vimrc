@@ -24,8 +24,19 @@ set history=1000                "Store lots of :cmdline history
 set showcmd                     "Show incomplete cmds down the bottom
 set showmode                    "Show current mode down the bottom
 set gcr=a:blinkon0              "Disable cursor blink
-set visualbell                  "No sounds
+set visualbell t_vb=            "No sounds
 set autoread                    "Reload files changed outside vim
+set splitbelow
+set splitright
+" set winheight=50
+" set winminheight=5
+set wrap
+
+" This makes RVM work inside Vim. I have no idea why.
+set shell=bash
+" Prevent Vim from clobbering the scrollback buffer. See
+" http://www.shallowsky.com/linux/noaltscreen.html
+set t_ti= t_te=
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -38,6 +49,7 @@ syntax on
 " ================ Search Settings  =================
 
 set incsearch        "Find the next match as we type the search
+set ignorecase smartcase  " make searches case-sensitive only if they contain upper-case characters
 set hlsearch         "Hilight searches by default
 set viminfo='100,f1  "Save up to 100 marks, enable capital marks
 
@@ -69,10 +81,11 @@ filetype plugin on
 filetype indent on
 
 " Display tabs and trailing spaces visually
-set list listchars=tab:\ \ ,trail:·
+" set list listchars=tab:\ \ ,trail:·
+set list listchars=tab:>.,trail:.,extends:#,nbsp:.
 
-set nowrap       "Don't wrap lines
-set linebreak    "Wrap lines at convenient points
+" set nowrap       "Don't wrap lines
+" set linebreak    "Wrap lines at convenient points
 
 " ================ Folds ============================
 
@@ -94,8 +107,7 @@ set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
-
-"
+set wildignore+=*.class,WEB-INF/*,**/jxl/*,*.log
 
 " ================ Scrolling ========================
 

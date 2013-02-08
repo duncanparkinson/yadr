@@ -22,6 +22,32 @@ nnoremap ,ow "_diwhp
 "make Y consistent with C and D
 nnoremap Y y$
 
+"allow saving, etc. with capital letters
+:cmap WQ<CR> wq<CR>
+:cmap Wq<CR> wq<CR>
+:cmap W<CR> w<CR>
+:cmap Q<CR> q<CR>
+
+"clear the search buffer when hitting return
+function! MapCR()
+  nnoremap <cr> :nohlsearch<cr>
+endfunction
+call MapCR()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RENAME CURRENT FILE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+map <leader>n :call RenameFile()<cr>
+
 " ========================================
 " RSI Prevention - keyboard remaps
 " ========================================
@@ -33,10 +59,13 @@ nnoremap Y y$
 " Now using the middle finger of either hand you can type
 " underscores with apple-k or apple-d, and add Shift
 " to type dashes
-imap <silent> <D-k> _
-imap <silent> <D-d> _
+imap <silent> <C-k> _
+imap <silent> <C-d> _
 imap <silent> <D-K> -
-imap <silent> <D-D> -
+imap <silent> <C-D> -
+
+" expand current dir
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " ,# Surround a word with #{ruby interpolation}
 map ,# ysiw#
@@ -78,15 +107,18 @@ inoremap ;; <C-o>A;<esc>
 " Change inside various enclosures with Cmd-" and Cmd-'
 " The f makes it find the enclosure so you don't have
 " to be standing inside it
-nnoremap <D-'> f'ci'
-nnoremap <D-"> f"ci"
-nnoremap <D-(> f(ci(
-nnoremap <D-)> f)ci)
-nnoremap <D-[> f[ci[
-nnoremap <D-]> f]ci]
+nnoremap <C-'> f'ci'
+nnoremap <C-"> f"ci"
+nnoremap <C-(> f(ci(
+nnoremap <C-)> f)ci)
+nnoremap <C-[> f[ci[
+nnoremap <C-]> f]ci]
 
 "Go to last edit location with ,.
-nnoremap ,. '.
+" nnoremap ,. '.
+
+"Go to last file with ,,
+nnoremap ,, <c-^>
 
 "When typing a string, your quotes auto complete. Move past the quote
 "while still in insert mode by hitting Ctrl-a. Example:
@@ -99,7 +131,7 @@ imap <C-a> <esc>wa
 
 " ==== NERD tree
 " Cmd-Shift-N for nerd tree
-nmap <D-N> :NERDTreeToggle<CR>
+nmap <C-N> :NERDTreeToggle<CR>
 " Open the project tree and expose current file in the nerdtree with Ctrl-\
 nnoremap <silent> <C-\> :NERDTreeFind<CR>:vertical res 30<CR>
 
@@ -121,8 +153,8 @@ autocmd FileType javascript map <buffer> <D-j> {
 
 
 " Command-/ to toggle comments
-map <D-/> :TComment<CR>
-imap <D-/> <Esc>:TComment<CR>i
+" map // :TComment<CR>
+" imap // <Esc>:TComment<CR>i
 
 "GitGrep - open up a git grep line, with a quote started for the search
 nnoremap ,gg :GitGrep ""<left>
@@ -174,8 +206,11 @@ nnoremap <D-Down> <C-w>-
 nnoremap <D-Left> <C-w><
 nnoremap <D-Right>  <C-w>>
 
+nnoremap + <C-w>+
+nnoremap - <C-w>-
+
 " create <%= foo %> erb tags using Ctrl-k in edit mode
-imap <silent> <C-K> <%=   %><Esc>3hi
+imap <silent> <C-L> <%=   %><Esc>3hi
 
 " create <%= foo %> erb tags using Ctrl-j in edit mode
 imap <silent> <C-J> <%  %><Esc>2hi
@@ -190,7 +225,7 @@ nnoremap <silent> ,cf :let @* = expand("%:~")<CR>
 nnoremap <silent> ,cn :let @* = expand("%:t")<CR>
 
 "Clear current search highlight by double tapping //
-nmap <silent> // :nohlsearch<CR>
+" nmap <silent> // :nohlsearch<CR>
 
 "(v)im (c)ommand - execute current line as a vim command
 nmap <silent> ,vc yy:<C-f>p<C-c><CR>
@@ -203,7 +238,7 @@ noremap ,hl :set hlsearch! hlsearch?<CR>
 
 " Apple-* Highlight all occurrences of current word (like '*' but without moving)
 " http://vim.wikia.com/wiki/Highlight_all_search_pattern_matches
-nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+nnoremap <C-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 " These are very similar keys. Typing 'a will jump to the line in the current
 " file marked with ma. However, `a will jump to the line and column marked
@@ -217,8 +252,8 @@ nnoremap ` '
 " Tabularize - alignment
 " ============================
 " Hit Cmd-Shift-A then type a character you want to align by
-nmap <D-A> :Tabularize /
-vmap <D-A> :Tabularize /
+nmap <C-t> :Tabularize /
+vmap <C-t> :Tabularize /
 
 " ============================
 " SplitJoin plugin
@@ -240,7 +275,7 @@ nmap <silent> ,<D-R> :call RunLastConqueCommand()<CR>
 map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
 
 " Source current file Cmd-% (good for vim development)
-map <D-%> :so %<CR>
+map <C-%> :so %<CR>
 
 " ,hp = html preview
 map <silent> ,hp :!open -a Safari %<CR><CR>

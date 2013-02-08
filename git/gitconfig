@@ -1,16 +1,19 @@
 # set your user tokens as enivornment variables, such as ~/.secrets
 # See the README for examples.
+[user]
+  name = Duncan Parkinson
+  email = duncan.parkinson@mac.com
 [color]
   ui = true
 [color "branch"]
   current = yellow reverse
   local = yellow
   remote = green
-[color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
+[color.diff]
+  meta = yellow
+  frag = magenta
+  old = red
+  new = green
 [alias]
   # add
   a = add                           # add
@@ -84,15 +87,25 @@
   svnl = svn log --oneline --show-commit
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
-[mergetool]
+# [mergetool]
+#   prompt = false
+# [mergetool "mvimdiff"]
+#   cmd="mvim -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
+#   keepbackup=false
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[diff]
+  tool = Kaleidoscope
+[difftool]
   prompt = false
-[mergetool "mvimdiff"]
-  cmd="mvim -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
-  keepbackup=false
+[mergetool "Kaleidoscope"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustExitCode = true
 [merge]
   summary = true
   verbosity = 1
-  tool = mvimdiff
+  tool = Kaleidoscope
+  # tool = mvimdiff
 [apply]
   whitespace = nowarn
 [branch]
