@@ -23,10 +23,17 @@ nnoremap ,ow "_diwhp
 nnoremap Y y$
 
 "allow saving, etc. with capital letters
-:cmap WQ<CR> wq<CR>
-:cmap Wq<CR> wq<CR>
-:cmap W<CR> w<CR>
-:cmap Q<CR> q<CR>
+if has("user_commands")
+    command! -bang -nargs=? -complete=file E e<bang> <args>
+    command! -bang -nargs=? -complete=file W w<bang> <args>
+    command! -bang -nargs=? -complete=file Wq wq<bang> <args>
+    command! -bang -nargs=? -complete=file WQ wq<bang> <args>
+    command! -bang Wa wa<bang>
+    command! -bang WA wa<bang>
+    command! -bang Q q<bang>
+    command! -bang QA qa<bang>
+    command! -bang Qa qa<bang>
+endif
 
 "clear the search buffer when hitting return
 function! MapCR()
