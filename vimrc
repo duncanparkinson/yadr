@@ -28,8 +28,8 @@ set visualbell t_vb=            "No sounds
 set autoread                    "Reload files changed outside vim
 set splitbelow
 set splitright
-" set winheight=50
-" set winminheight=5
+set winheight=45
+set winminheight=5
 set wrap
 
 " This makes RVM work inside Vim. I have no idea why.
