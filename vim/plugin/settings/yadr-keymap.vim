@@ -4,11 +4,6 @@ call arpeggio#load()
 " ========================================
 " General vim sanity improvements
 " ========================================
-"
-"
-" Change leader to a comma because the backslash is too far away
-" That means all \x commands turn into ,x
-let mapleader=","
 
 " alias yw to yank the entire word 'yank inner word'
 " even if the cursor is halfway inside the word

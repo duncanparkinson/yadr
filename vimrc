@@ -1,23 +1,48 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+filetype off "for vundle
 
-" TODO: this may not be in the correct place. It is intended to allow overriding <Leader>.
-" source ~/.vimrc.before if it exists.
-if filereadable(expand("~/.vimrc.before"))
-  source ~/.vimrc.before
-endif
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-" =============== Pathogen Initialization ===============
-" This loads all the plugins in ~/.vim/bundle
-" Use tpope's pathogen plugin to manage all other plugins
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
 
-  runtime bundle/tpope-vim-pathogen/autoload/pathogen.vim
-  call pathogen#infect()
-  call pathogen#helptags()
+" Plugins
+Bundle 'chrisbra/color_highlight'
+Bundle 'mileszs/ack.vim'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-pathogen'
+Bundle 'tpope/vim-ragtag'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rake'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'wincent/Command-T'
+Bundle 'godlygeek/tabular'
+Bundle 'gregsexton/gitv'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'kogakure/vim-sparkup'
+Bundle 'majutsushi/tagbar'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'Shougo/neocomplcache'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'sjl/gundo.vim'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+
+filetype plugin indent on
 
 " ================ General Config ====================
 
+let mapleader=","
 set number                      "Line numbers are good
 set backspace=indent,eol,start  "Allow backspace in insert mode
 set history=1000                "Store lots of :cmdline history
@@ -28,7 +53,7 @@ set visualbell t_vb=            "No sounds
 set autoread                    "Reload files changed outside vim
 set splitbelow
 set splitright
-set winheight=40
+set winheight=30
 set winminheight=5
 set wrap
 
@@ -76,9 +101,6 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 set expandtab
-
-filetype plugin on
-filetype indent on
 
 " Display tabs and trailing spaces visually
 " set list listchars=tab:\ \ ,trail:·
