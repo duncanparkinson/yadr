@@ -37,6 +37,8 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'sjl/gundo.vim'
 Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'kana/vim-textobj-user'
+Bundle 'altercation/vim-colors-solarized'
 
 filetype plugin indent on
 
