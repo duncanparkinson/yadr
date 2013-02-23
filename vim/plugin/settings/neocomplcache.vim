@@ -13,7 +13,7 @@ let g:neocomplcache_max_list = 5
 let g:neocomplcache_auto_completion_start_length = 3
 
 " Map standard Ctrl-N completion to Cmd-Space
-inoremap <D-Space> <C-n>
+inoremap <Tab> <C-n>
 
 " This makes sure we use neocomplcache completefunc instead of 
 " the one in rails.vim, otherwise this plugin will crap out
@@ -40,3 +40,18 @@ let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
 " Prevent hanging with python: https://github.com/skwp/dotfiles/issues/163
 let g:neocomplcache_omni_patterns['python'] = ''
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MULTIPURPOSE TAB KEY
+" Indent if we're at the beginning of a line. Else, do completion.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>

@@ -14,5 +14,12 @@ autocmd VimEnter * set guitablabel=%N:\ %t\ %M
 set lines=60
 set columns=190
 
-set guifont=Inconsolata\ XL:h17,Inconsolata:h20,Monaco:h17
+set guifont=Menlo\ Regular:h13
 let g:CSApprox_loaded = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" STATUS LINE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+set laststatus=2 "always show the status line
+set cmdheight=2

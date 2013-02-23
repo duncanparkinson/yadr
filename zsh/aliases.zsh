@@ -72,3 +72,5 @@ alias gup='git smart-pull'
 
 alias s='git status -sb $argv; return 0'
 alias d='gd $argv'
+
+alias tclogs='tail -n 30 /Library/Tomcat/logs/catalina.out'

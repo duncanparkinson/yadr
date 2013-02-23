@@ -28,12 +28,12 @@ set visualbell t_vb=            "No sounds
 set autoread                    "Reload files changed outside vim
 set splitbelow
 set splitright
-set winheight=45
+set winheight=40
 set winminheight=5
 set wrap
 
 " This makes RVM work inside Vim. I have no idea why.
-set shell=bash
+set shell=zsh
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
 set t_ti= t_te=

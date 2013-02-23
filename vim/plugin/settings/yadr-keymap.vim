@@ -222,6 +222,9 @@ imap <silent> <C-L> <%=   %><Esc>3hi
 " create <%= foo %> erb tags using Ctrl-j in edit mode
 imap <silent> <C-J> <%  %><Esc>2hi
 
+" Insert a hash rocket
+imap <c-h> <space>=><space>
+
 " ============================
 " Shortcuts for everyday tasks
 " ============================
