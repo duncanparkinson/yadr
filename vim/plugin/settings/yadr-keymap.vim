@@ -106,16 +106,6 @@ imap <c-l> <space>=><space>
 " Semicolon at end of line by typing ;;
 inoremap ;; <C-o>A;<esc>
 
-" Change inside various enclosures with Cmd-" and Cmd-'
-" The f makes it find the enclosure so you don't have
-" to be standing inside it
-nnoremap <C-'> f'ci'
-nnoremap <C-"> f"ci"
-nnoremap <C-(> f(ci(
-nnoremap <C-)> f)ci)
-nnoremap <C-[> f[ci[
-nnoremap <C-]> f]ci]
-
 "Go to last edit location with ,.
 " nnoremap ,. '.
 
@@ -139,7 +129,7 @@ nnoremap <silent> <C-\> :NERDTreeFind<CR>:vertical res 30<CR>
 
 " ,q to toggle quickfix window (where you have stuff like GitGrep)
 " ,oq to open it back up (rare)
-nmap <silent> ,qc :CloseSingleConque<CR>:cclose<CR>
+nmap <silent> ,qc :cclose<CR>
 nmap <silent> ,qo :copen<CR>
 
 " move up/down quickly by using Cmd-j, Cmd-k
@@ -174,9 +164,6 @@ nnoremap <silent> ,x :bn<CR>
 " ==============================
 " Window/Tab/Split Manipulation
 " ==============================
-" Move between split windows by using the four directions H, L, I, N
-" (note that  I use I and N instead of J and K because  J already does
-" line joins and K is mapped to GitGrep the current word
 nnoremap <silent> <C-h> <C-w>h
 nnoremap <silent> <C-l> <C-w>l
 nnoremap <silent> <C-k> <C-w>k
@@ -199,8 +186,8 @@ map <silent> <D-9> :tabn 9<cr>
 " Create window splits easier. The default
 " way is Ctrl-w,v and Ctrl-w,s. I remap
 " this to vv and ss
-nnoremap <silent> vv <C-w>v
-nnoremap <silent> ss <C-w>s
+nnoremap <silent> vv :wincmd v<cr>:wincmd h<cr>:vertical resize 80<cr>:wincmd l<cr>
+nnoremap <silent> ss :wincmd s<cr>:wincmd k<cr>:resize 5<cr>:wincmd j<cr>
 
 " Resize windows with arrow keys
 nnoremap <D-Up> <C-w>+

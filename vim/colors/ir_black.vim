@@ -209,5 +209,7 @@ hi link javaScriptNumber      Number
 " Special for CSharp
 hi  link csXmlTag             Keyword      
 
+hi DiffAdded            ctermfg=green
+hi DiffRemoved          ctermfg=red
 
 " Special for PHP

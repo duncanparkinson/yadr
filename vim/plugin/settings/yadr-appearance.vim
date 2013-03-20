@@ -3,7 +3,7 @@
 set t_Co=256
 
 " http://ethanschoonover.com/solarized/vim-colors-solarized
-colorscheme solarized
+colorscheme grb256
 set background=dark
 
 set cursorline

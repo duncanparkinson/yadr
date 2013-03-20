@@ -6,6 +6,11 @@ alias po='popd'
 alias ...='cd ../..'
 alias -- -='cd -'
 
+function chpwd() {
+  emulate -L zsh
+  ls
+}
+
 # Super user
 alias _='sudo'
 
